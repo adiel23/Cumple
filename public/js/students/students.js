@@ -1,15 +1,40 @@
+import { createURLWithParams, getObjects, renderTableContent} from "../utils/utils.js";
+
+const filters = {
+    NIE: null,
+    name: null
+}
+
+const title = document.getElementById('title');
+
 const filterForm = document.getElementById('filter-form');
 
 const tbody = document.getElementById('tbody');
 
+const NIEInput = document.getElementById('NIE-input');
+const nameInput = document.getElementById('name-input');
+
 filterForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const NIE = document.getElementById('NIE-input').value;
-    const name = document.getElementById('name-input').value;
+    filters.NIE = NIEInput.value;
+    filters.name = nameInput.value;
+
+    const url = createURLWithParams('/students', filters);;
 
     try {
-        await renderTableContent(`/students?NIE=${NIE}&name=${name}`);
+        const students = await getObjects(url, 'students');
+
+        if (students) {
+            title.textContent = 'ESTUDIANTES ENCONTRADOS';
+            table.style.display = '';
+            tbody.innerHTML = '';
+            const body = renderTableContent(students, createStudentRow);
+            tbody.appendChild(body);
+        } else {
+            title.textContent = 'NO SE ENCONTRARON ESTUDIANTES CON LOS FILTROS SELECCIONADOS';
+            table.style.display = 'none';
+        }
     } catch (error) {
         console.error(error);
     }
@@ -29,50 +54,37 @@ table.addEventListener('click', (e) => {
     };
 });
 
-await renderTableContent(`/students`);
+const students = await getObjects('/students', 'students');
 
-async function renderTableContent(route) {
-    const response = await fetch(route);
+if (students) {
+    title.textContent = 'Estudiantes';
+    const body = renderTableContent(students, createStudentRow);
+    tbody.appendChild(body);
+}
 
-    const data = await response.json();
+function createStudentRow(student) {
+    const row = document.createElement('tr');
+    row.classList.add('table__row');
+    row.dataset.id = student.id;
 
-    if (!response.ok) return alert(data.error);
+    const groupText = `${student.group.level} ${student.group.modality} ${student.group.section}`;
 
-    console.log(data.students)
+    const values = [student.NIE, student.name, student.lastname, groupText];
 
-    tbody.innerHTML = ``;
-
-    const fragment = document.createDocumentFragment();
-
-    data.students.forEach(student => {
-        const row = document.createElement('tr');
-        row.classList.add('table__row');
-        row.dataset.id = student.id;
-
-        const groupText = `${student.group.level} ${student.group.modality} ${student.group.section}`;
-
-        const values = [student.id, student.NIE, student.name, student.lastname, groupText];
-
-        values.forEach((value, index) => {
-            if (index === 0) return;
-            
-            const cell = document.createElement('td');
-            cell.textContent = value;
-            row.appendChild(cell);
-        });
-
+    values.forEach(value => {
         const cell = document.createElement('td');
-        const historyBtn = document.createElement('button');
-        historyBtn.textContent = 'Ver Historial';
-
-        historyBtn.classList.add('table__btn');
-        cell.appendChild(historyBtn);
-
+        cell.textContent = value;
         row.appendChild(cell);
-
-        fragment.appendChild(row);
     });
 
-    tbody.appendChild(fragment);
+    const cell = document.createElement('td');
+    const historyBtn = document.createElement('button');
+    historyBtn.textContent = 'Ver Historial';
 
+    historyBtn.classList.add('table__btn');
+    cell.appendChild(historyBtn);
+
+    row.appendChild(cell);
+
+    return row;
 }
