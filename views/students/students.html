@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes</title>
+    <link rel="stylesheet" href="/css/students/students.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>ESTUDIANTES</h1>
+        <form class="filter-form" id="filter-form">
+            <div class="filter-form__group">
+                <!-- <label for="NIE-input">NIE: </label> -->
+                <input type="text" id="NIE-input" placeholder="NIE" class="filter-form__input">
+            </div>
+            <div class="filter-form__group">
+                <!-- <label for="NIE-input">NIE: </label> -->
+                <input type="text" id="name-input" placeholder="nombre" class="filter-form__input">
+            </div>
+            <button class="filter-form__submit">Filtrar</button>
+        </form>
+
+        <table class="table" id="table">
+            <thead>
+                <th>NIE</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Grupo</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/js/students/students.js" type="module"></script>
+    
+</body>
+</html>

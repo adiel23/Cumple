@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.filter-form__select {
+    padding: 5px;
+}
+
+.filter-form__submit {
+    padding: 5px;
+    background: green;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.filter-form__submit:hover {
+    background: rgb(27, 27, 122);
+}
+
+.table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 7px;
+    border: 1px solid black;
+}
+
+.icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.icon:hover {
+    color: green;
+}

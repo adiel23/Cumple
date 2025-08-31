@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    <link rel="stylesheet" href="/css/admin/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="card" id="faults-card">
+            <h2>Faltas</h2>
+            <p>Aquí puedes ver y gestionar las faltas de los estudiantes.</p>
+        </div>
+        <div class="card" id="students-card">
+            <h2>Estudiantes</h2>
+            <p>Aquí puedes ver la lista de estudiantes y sus historiales de faltas.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('faults-card').addEventListener('click', () => {
+            window.location.href = '/student-faults/student-faults-view';
+        });
+
+        document.getElementById('students-card').addEventListener('click', () => {
+            window.location.href = '/students/students-view';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faltas Cometidas</title>
+    <script src="https://kit.fontawesome.com/7792cd81ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/students/faults.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"></h1>
+        <form class="filter-form" id="filter-form">
+            <!-- <div class="filter-form__group">
+                <select name="type" id="type-select" class="filter-form__select">
+                    <option value="leve">leve</option>
+                    <option value="grave">grave</option>
+                    <option value="muy grave">muy grave</option>
+                </select>
+            </div> -->
+
+            <div class="filter-form__group">
+                <label for="start-date-input">Fecha Inicio</label>
+                <input type="date" name="startDate" id="start-date-input" placeholder="Fecha Inicio" class="filter-form__input">
+            </div>
+
+            <div class="filter-form__group">
+                <label for="end-date-input">Fecha Termino</label>
+                <input type="date" name="endDate" id="end-date-input" placeholder="Fecha Final" class="filter-form__input">
+            </div>
+
+            <button class="filter-form__submit">Filtrar</button>
+        </form>
+        <table class="table" id="table">
+            <thead>
+                <th>Tipo</th>
+                <th>Descripcion</th>
+                <th>Fecha y hora</th>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <i class="fa-solid fa-download icon" id="download-btn"></i>
+
+    <script src="/js/students/faults.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "behavior-tracking-system",
+  "version": "1.0.0",
+  "description": "sistema de registro de conducta para estudiantes del instituto nacional de san martin",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "sistema",
+    "conducta",
+    "nodejs"
+  ],
+  "author": "Adiel Arturo Elias Mercado",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.14.3",
+    "pdfkit": "^0.17.2",
+    "pdfkit-table": "^0.1.99",
+    "pdfmake": "^0.2.20"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

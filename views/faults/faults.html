@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faltas</title>
+    <script src="https://kit.fontawesome.com/7792cd81ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/faults/faults.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title" id="title">FALTAS DEL DIA DE HOY</h1>
+        <form class="filter-form" id="filter-form">
+            <div class="filter-form__group">
+                <!-- <label for="NIE-input">NIE: </label> -->
+                <!-- <input type="text" id="NIE-input" placeholder="NIE" class="filter-form__input"> -->
+                <select name="groupId" id="group-select" class="filter-form__select">
+                    <option value="">-- Ningun Grupo --</option>
+                </select>
+            </div>
+
+            <div class="filter-form__group">
+                <label for="start-date-input">Fecha Inicio</label>
+                <input type="date" name="startDate" id="start-date-input" placeholder="Fecha Inicio" class="filter-form__input">
+            </div>
+
+            <div class="filter-form__group">
+                <label for="end-date-input">Fecha Termino</label>
+                <input type="date" name="endDate" id="end-date-input" placeholder="Fecha Final" class="filter-form__input">
+            </div>
+
+            <button class="filter-form__submit">Filtrar</button>
+        </form>
+
+        <table class="table" id="table">
+            <thead>
+                <th>NIE</th>
+                <th>Nombre</th>
+                <th>Grupo</th>
+                <th>Falta</th>
+                <th>Fecha y hora</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <i class="fa-solid fa-download icon" id="download-btn"></i>
+
+    <script src="/js/faults/faults.js" type="module"></script>
+    
+</body>
+</html>

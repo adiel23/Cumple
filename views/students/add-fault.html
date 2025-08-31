@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar falta</title>
+  <script src="https://kit.fontawesome.com/7792cd81ab.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/students/create-fault.css">
+</head>
+<body>
+    <h2 class="page-title">Registrar falta</h2>
+
+    <form action="" class="fault-form" id="fault-form">
+        <div class="fault-form__group fault-form__group--search" id="search-container">
+            <label for="search-input" class="fault-form__label">Estudiante:</label>
+            <input 
+            type="text" 
+            name="NIE" 
+            id="search-input" 
+            class="fault-form__input" 
+            placeholder="NIE"
+            >
+            <div id="search-results" class="fault-form__search-results"> 
+            <!-- aquí se muestran todos los resultados de la búsqueda -->
+            </div>
+            <div class="fault-form__student" id="chosen-student">
+            <!-- aquí se mostrará el estudiante elegido -->
+            </div>
+        </div>
+
+        <!-- <div class="fault-form__group">
+            <label for="type-select" class="fault-form__label">Tipo:</label>
+            <select name="type" id="type-select" class="fault-form__select">
+                <option value="leve">Leve</option>
+                <option value="grave">Grave</option>
+                <option value="muy grave">Muy grave</option>
+            </select>
+        </div> -->
+
+        <div class="fault-form__group">
+            <label for="fault-select" class="fault-form__label">Descripción:</label>
+            <select name="faultId" id="fault-select" class="fault-form__select">
+                <!-- <% faults.forEach(fault => { %>
+                    <option value="<%=fault.id%>"><%= fault.description %></option>
+                <% }) %> -->
+            </select>
+        </div>
+
+        <button class="fault-form__submit">Registrar</button>
+    </form>
+
+    <script src="/js/students/add-fault.js" type="module"></script>
+</body>
+</html>
