@@ -6,33 +6,30 @@ Cumple is a web-based system designed to help school administrators and teachers
 
 The system centralizes reports, enables efficient filtering, and supports PDF report generation, providing a modern tool to manage school-wide compliance records.
 
+## Demo
+
+You can watch the 1 minute system's demo here: https://youtu.be/aAG503wzVW8
+
 ## Key Features
 
 ### Teachers
 
 - Record student infractions
-
 - Secure login system
 
 ### Principal and Assistant Principals
 
 - Secure login system
-
 - View a student’s full infraction history with optional filters (date range, type of infraction)
-
 - View all infractions registered in the system with optional filters (group, date range)
-
 - Export filtered results as PDF reports
 
-## Architecture
+## Technologies and Arquitecture
 
-Backend: Node.js (MVC + Services architecture)
-
-Database: MySQL
-
-Frontend: HTML, CSS, JavaScript
-
-PDF Generation: Server-side report generator
+- **Backend:** Node.js + Express (MVC + Services architecture)
+- **Database:** MySQL
+- **Frontend:** HTML, CSS, JavaScript
+- **PDF Generation:** Server-side report generator
 
 ## Installation & Requirements
 
@@ -51,17 +48,12 @@ PDF Generation: Server-side report generator
 
 ### For Teachers
 
-Once logged in, teachers access a simple interface containing a form with a NIE input field (student ID).
-
-Enter the NIE to search for a student.
-
-Select the correct student from the suggestions (matching name and section).
-
-Choose the infraction type from the list.
-
-Click Register to save the infraction.
-
-The entry is immediately stored in the system’s database.
+- Once logged in, teachers access a simple interface containing a form with a NIE input field (student ID).
+- Enter the NIE to search for a student.
+- Select the correct student from the suggestions (matching name and section).
+- Choose the infraction type from the list.
+- Click Register to save the infraction.
+- The entry is immediately stored in the system’s database.
 
 ### For Principal and Assistant Principals
 
@@ -80,18 +72,6 @@ After logging in, the administration panel provides two main views:
 - Open the student’s detailed infraction history using the "View History" button.
 - Apply filters: By type of infraction and/or By date range
 - Export the results as a PDF report.
-
-## Demo
-
-
-
-## Technologies Used
-
-- Node.js with Express
-- MySQL
-- HTML
-- CSS
-- JavaScript
 
 ## Credits / Authors
 
