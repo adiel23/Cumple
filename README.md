@@ -1,64 +1,102 @@
-# Cumple
+# Cumple — Student Compliance Tracking System
 
-## Descripción
+## Overview
 
-Este sistema tiene como finalidad registrar y consultar de forma sencilla las faltas de los estudiantes relacionadas al incumplimieto de las medidas de presentacion personal impulsadas por el MINED en todas las escuelas de El Salvador.
+Cumple is a web-based system designed to help school administrators and teachers in El Salvador easily record and review student infractions related to personal presentation and discipline guidelines established by the Ministry of Education (MINED).
 
-### Características principales
+The system centralizes reports, enables efficient filtering, and supports PDF report generation, providing a modern tool to manage school-wide compliance records.
 
-**DOCENTES**
+## Key Features
 
-- Registro de faltas.
-- Login
+### Teachers
 
-**DIRECTOR/A Y SUBDIRECTORES/AS**
+- Record student infractions
 
-- Login
-- Consulta de historial de faltas de un estudiante aplicando filtros opcionales (rango de fechas).
-- Consulta de todas las faltas registradas en el sistema aplicando filtros opcionales (por grupo, por rango de fechas).
-- Generacion de Reportes en PDF.
+- Secure login system
 
-### Arquitectura
+### Principal and Assistant Principals
 
-## Instalación / Requisitos
+- Secure login system
 
-**NODE JS**
+- View a student’s full infraction history with optional filters (date range, type of infraction)
 
-1. Instalar Nodejs y dar clic en siguiente en todo.
-2. Ejecutar el comando npm i para descargar todas las dependencias del proyecto.
+- View all infractions registered in the system with optional filters (group, date range)
 
-**MYSQL**
+- Export filtered results as PDF reports
 
-1. Del paquete de mysql community server solo instalar workbench y mysql server.
+## Architecture
 
-## USO ##
+Backend: Node.js (MVC + Services architecture)
 
-**Docentes**
+Database: MySQL
 
-Una vez se inicie sesión, la interfaz para docentes consta de un formulario con un input que dice NIE. En ese input el docente deberá buscar al estudiante ingresando su NIE y de entre todas las opciones que se le muestran seleccionar al estudiante cuyo nombre y sección coincide con los del estudiante al cual se le registrará la falta. Una vez seleccionado el estudiante ahora tendra que seleccionar una de las faltas por la cual se esta registrando al estudiante. Una vez seleccionada puede dar clic en registrar y la falta quedaria guardada.
+Frontend: HTML, CSS, JavaScript
 
-**DIRECTORA Y SUBDIRECTORAS**
+PDF Generation: Server-side report generator
 
-Una vez se inicie sesión, la interfaz para la dirección consta de 2 pantallas principales. Una para ver las faltas en general y la otra para ver el historial de faltas de los estudiantes. En la primera pantalla, por defecto, se mostrarán todas las faltas registradas el dia en el que se accede al sistema. Usted podrá filtrar estas faltas por grupo y rango de fechas y si quiere puede descargar los resultados en PDF.
+## Installation & Requirements
 
-En la segunda pantalla se mostrarán todos los estudiantes de la institución y se podrá buscar un estudiante por su NIE y nombre. De este estudiante encontrado se podra ver su historial al dar clic en el botón ver historial. Se mostrará una pantalla con todas las faltas que se le han registrado a ese estudiante y usted podrá filtras esas faltas por tipo y rango de fechas y si quiere puede descargar los resultados en PDF.
+### Node.js
 
-## Capturas de pantalla
+1. Install Node.js (default installation is fine).
+2. Run the command: npm install to download all project dependencies.
 
-## Tecnologías usadas
+### MySQL
 
-- Nodejs
+1. From the MySQL Community package, install: MySQL Server and MySQL Workbench
+2. Import the database script included in the repository (if applicable).
+3. Configure database credentials in the project’s environment variables.
+
+## Usage Guide
+
+### For Teachers
+
+Once logged in, teachers access a simple interface containing a form with a NIE input field (student ID).
+
+Enter the NIE to search for a student.
+
+Select the correct student from the suggestions (matching name and section).
+
+Choose the infraction type from the list.
+
+Click Register to save the infraction.
+
+The entry is immediately stored in the system’s database.
+
+### For Principal and Assistant Principals
+
+After logging in, the administration panel provides two main views:
+
+**1. General Infractions View**
+
+- By default, shows all infractions registered on the current day.
+- Apply filters: By group and/or By date range
+- Export filtered records as a PDF report.
+
+**2. Student History View**
+
+- Displays a list of all students in the institution.
+- Search by NIE or student name.
+- Open the student’s detailed infraction history using the "View History" button.
+- Apply filters: By type of infraction and/or By date range
+- Export the results as a PDF report.
+
+## Demo
+
+
+
+## Technologies Used
+
+- Node.js with Express
 - MySQL
 - HTML
 - CSS
-- javaScript
+- JavaScript
 
-## Créditos / Autores
+## Credits / Authors
 
-**Autor:** Adiel Arturo Elias Mercado.
+Author: Adiel Arturo Elías Mercado
 
-**Creditos:** Lic. Maria Magdalena de Ramirez.
+## License
 
-## Licencia
-
-Licencia de software mensual, anual o compra completa.
+This project is available under a monthly, annual, or full-purchase software license, depending on the institution’s needs.
