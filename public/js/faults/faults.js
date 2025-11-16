@@ -1,4 +1,4 @@
-import { createURLWithParams } from "../utils/utils.JS";
+import { createURLWithParams, renderTableContent, getObjects} from "../utils/utils.js";
 
 // filtros:
 
@@ -8,13 +8,20 @@ const filters = {
     endDate: null
 }
 
+const title = document.getElementById('title');
+
 // obtener todos los grupos
 
 const filterForm = document.getElementById('filter-form');
 
 const groupSelect = document.getElementById('group-select');
 
-await renderGroups();
+const groups = await getObjects('/groups', 'groups');
+
+if (groups) {
+    const body = renderGroupSelectContent(groups);
+    groupSelect.appendChild(body);
+} 
 
 const startDateInput = document.querySelector('input[name="startDate"]');
 const endDateInput = document.querySelector('input[name="endDate"]');
@@ -29,7 +36,18 @@ filterForm.addEventListener('submit', async (e) => {
     try {
         const url = createURLWithParams('/student-faults', filters);
 
-        await renderTableContent(url);
+        const faults = await getObjects(url, 'faults');
+
+        if (faults) {
+            title.textContent = 'FALTAS ENCONTRADAS';
+            table.style.display = '';
+            tbody.innerHTML = '';
+            const body = renderTableContent(faults, createFaultRow);
+            tbody.appendChild(body);
+        } else {
+            table.style.display = 'none';
+            title.textContent = 'NO SE ENCONTRARON FALTAS QUE COINCIDAN CON LOS FILTROS ESPECIFICADOS';
+        }
     } catch (error) {
         console.error(error);
     }
@@ -67,83 +85,67 @@ endDateInput.value = todayString;
 
 const url = createURLWithParams(`/student-faults`, filters);
 
-await renderTableContent(url); // obtiene todas las faltas del dia de hoy
+const todayFaults = await getObjects(url, 'faults') // obtiene todas las faltas del dia de hoy
 
-async function renderTableContent(route) {
-    const response = await fetch(route);
-
-    const data = await response.json();
-
-    if (!response.ok) {
-        table.style.display = 'none';
-        title.textContent = 'No se encontraron faltas';
-        return;
-    }
-
-    title.textContent = 'FALTAS';
-
-    table.style.display = '';
-
-    tbody.innerHTML = ``;
-
-    const fragment = document.createDocumentFragment();
-
-    data.faults.forEach(fault => {
-        const row = document.createElement('tr');
-        row.classList.add('table__row');
-        row.dataset.id = fault.student.id;
-
-        const student = fault.student;
-
-        const studentFullName = `${student.name} ${student.lastname}`;
-        const groupText = `${student.group.level} ${student.group.modality} ${student.group.section}`;
-
-        const values = [student.NIE, studentFullName, groupText, fault.fault.description, fault.timestamp];
-
-        values.forEach(value => {
-            const cell = document.createElement('td');
-            cell.textContent = value;
-            row.appendChild(cell);
-        });
-
-        const cell = document.createElement('td');
-        const historyBtn = document.createElement('button');
-        historyBtn.textContent = 'Ver Historial';
-
-        historyBtn.classList.add('table__btn');
-        cell.appendChild(historyBtn);
-
-        row.appendChild(cell);
-
-        fragment.appendChild(row);
-    });
-
-    tbody.appendChild(fragment);
-
+if (todayFaults) {
+    const body = renderTableContent(todayFaults, createFaultRow);
+    tbody.appendChild(body);
+    title.textContent = 'FALTAS REALIZADAS EL DIA DE HOY';
+} else {
+    title.textContent = 'NO SE HAN REGISTRADO FALTAS EL DIA DE HOY';
 }
 
-async function renderGroups() {
-    try {
-        const response = await fetch('/groups');
+function createFaultRow(fault) {
+    const row = document.createElement('tr');
+    row.classList.add('table__row');
+    row.dataset.id = fault.student.id;
 
-        const data = await response.json();
+    const student = fault.student;
 
-        if (!response.ok) return alert(data.error);
+    const studentFullName = `${student.name} ${student.lastname}`;
+    const groupText = `${student.group.level} ${student.group.modality} ${student.group.section}`;
 
-        const fragment = document.createDocumentFragment();
+    const values = [student.NIE, studentFullName, groupText, fault.fault.description, fault.timestamp];
 
-        data.groups.forEach(group => {
-            const option = document.createElement('option');
-            option.value = group.id;
-            option.textContent = `${group.level} ${group.modality} ${group.section}`;
-            fragment.appendChild(option);
-        });
+    values.forEach(value => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.appendChild(cell);
+    });
 
-        groupSelect.appendChild(fragment);
-    } catch(error) {
-        console.error(error);
-    }
+    const cell = document.createElement('td');
+    const historyBtn = document.createElement('button');
+    historyBtn.textContent = 'Ver Historial';
+
+    historyBtn.classList.add('table__btn');
+    cell.appendChild(historyBtn);
+
+    row.appendChild(cell);
+
+    return row;
+}
+
+function renderGroupSelectContent(groups) {
+    const fragment = document.createDocumentFragment();
+
+    groups.forEach(group => {
+        const option = createGroupOption(group);
+        fragment.appendChild(option);
+    });
+
+    return fragment;
 };
+
+function createGroupOption(group) {
+    const option = document.createElement('option');
+    option.value = group.id;
+    option.textContent = `${group.level} ${group.modality} ${group.section}`;
+    return option;
+}
+
+// function clearTableBody(tbody) {
+//     tbody.innerHTML = '';
+// }
 
 // boton para descargar pdf
 
@@ -154,3 +156,4 @@ downloadBtn.addEventListener('click', async () => {
 
     window.location.href = url;
 });
+
